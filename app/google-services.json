@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "876052914713",
+    "project_id": "apireatapi",
+    "storage_bucket": "apireatapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876052914713:android:5cda9d5117b34c6f14c088",
+        "android_client_info": {
+          "package_name": "cuonghtph34430.poly.asm_reatapi_cuonghtph34430"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9CtgJoCeBz11Z4lfBYILJf4ABZDiyKLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
