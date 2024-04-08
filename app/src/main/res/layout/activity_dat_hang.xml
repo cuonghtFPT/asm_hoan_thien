@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewCreateAndAddActivity">
+    tools:context=".Dat_hang">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/ivBackCreUp"
+            android:id="@+id/ivBackCreUpdh"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
@@ -25,7 +25,7 @@
 
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvTitledh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="35dp"
@@ -63,7 +63,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edName"
+                android:id="@+id/edhName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
@@ -101,7 +101,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/edBrand"
+                    android:id="@+id/edhBrand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -115,6 +115,47 @@
 
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:text="So luong"
+                    android:textColor="@color/black"
+
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edhSoluong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:background="#FF9800"
+                    android:fontFamily="serif"
+                    android:textColor="@color/white"
+                    android:hint="Enter name Soluong"
+                    android:textColorHint="@color/white"
+                    android:padding="17dp"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -138,7 +179,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/edPrice"
+                    android:id="@+id/edhPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -154,28 +195,29 @@
         </LinearLayout>
 
 
+
         <!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:orientation="vertical">-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:orientation="vertical">-->
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="serif"-->
-<!--                android:text="Size"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold" />-->
+        <!--            <TextView-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="serif"-->
+        <!--                android:text="Size"-->
+        <!--                android:textColor="@color/black"-->
+        <!--                android:textStyle="bold" />-->
 
-<!--            <Spinner-->
-<!--                android:id="@+id/spSize"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="3dp"-->
-<!--                android:background="@drawable/custom_input" />-->
+        <!--            <Spinner-->
+        <!--                android:id="@+id/spSize"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="3dp"-->
+        <!--                android:background="@drawable/custom_input" />-->
 
-<!--        </LinearLayout>-->
+        <!--        </LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/btnChooseImage"
@@ -210,7 +252,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNewAndEdit"
+        android:id="@+id/btnDH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -221,5 +263,31 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="150dp"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tvTongtien"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thanh toán"
+            android:layout_marginStart="8dp"
+            android:padding="12dp"
+            android:textAllCaps="false"
+            android:id="@+id/btnThanhtoan"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>

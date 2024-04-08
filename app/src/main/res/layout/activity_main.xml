@@ -8,9 +8,9 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTitle"
         android:text="List productions"
         android:gravity="center"
         android:fontFamily="serif"
@@ -18,16 +18,37 @@
         android:background="#FF9800"
         android:textColor="@color/white"
         android:padding="15dp"
-        android:elevation="10dp"
-        />
+        android:elevation="10dp" />
 
+    <EditText
+        android:id="@+id/edt_Search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="10dp"
+        android:hint="Search"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="10dp"
+        android:textColorHint="@color/black" />
+
+    <Button
+        android:id="@+id/btn_Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_Search"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Search"
+        android:textColor="@android:color/white"
+        android:background="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tvTitle"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@id/btn_Search"
+        android:layout_marginTop="10dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatAdd"

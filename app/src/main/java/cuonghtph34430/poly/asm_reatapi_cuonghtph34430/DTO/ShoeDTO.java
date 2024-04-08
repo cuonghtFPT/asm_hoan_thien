@@ -5,15 +5,18 @@ public class ShoeDTO {
     private String name;
     private String description; // Thay đổi từ brand thành description
     private long price;
+    private String img;
     private String url;
     private String _id;
 
-    public ShoeDTO(String name, String description, long price, String url) {
+    public ShoeDTO(String name, String description, long price,String img) {
         this.name = name;
         this.description = description; // Thay đổi từ brand thành description
         this.price = price;
+        this.img=img;
         this.url = url;
     }
+
 
     public String get_id() {
         return _id;
@@ -47,6 +50,14 @@ public class ShoeDTO {
         this.price = price;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -61,6 +72,7 @@ public class ShoeDTO {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' + // Thay đổi từ brand thành description
                 ", price=" + price +
+                ", img="+ img +
                 ", url='" + url + '\'' +
                 ", id='" + _id + '\'' +
                 '}';

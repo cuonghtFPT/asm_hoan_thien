@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,54 +38,49 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NewCreateAndAddActivity extends AppCompatActivity {
+public class Dat_hang extends AppCompatActivity {
     private static final int MY_RES_CODE = 10;
-    TextView tvTitle;
+    TextView tvDathang;
     ImageView ivBack, ivImageShoe;
-    AppCompatButton btnNewAndEdit;
-    EditText edName, edPrice, edBrand;
+    AppCompatButton btnDathang;
+    EditText edhName, edhPrice, edhBrand, edthSoluong;
+    Button btnThanhtoan;
     LinearLayout btnChooseImage;
     Uri selectedImageUri; // Biến để lưu đường dẫn của ảnh đã chọn
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_create_and_add);
-        tvTitle = findViewById(R.id.tvTitle);
-        ivBack = findViewById(R.id.ivBackCreUp);
-        btnNewAndEdit = findViewById(R.id.btnNewAndEdit);
-        edBrand = findViewById(R.id.edBrand);
-        edName = findViewById(R.id.edName);
-        edPrice = findViewById(R.id.edPrice);
-        btnChooseImage = findViewById(R.id.btnChooseImage);
-        ivImageShoe = findViewById(R.id.ivImageShoe);
+        setContentView(R.layout.activity_dat_hang);
+
+        tvDathang=findViewById(R.id.tvTitledh);
+//        ivBack=findViewById(R.id.ivBackCreUpdh);
+        btnDathang=findViewById(R.id.btnDH);
+        edhName=findViewById(R.id.edhName);
+        edhPrice=findViewById(R.id.edhPrice);
+        edhBrand=findViewById(R.id.edhBrand);
+        edthSoluong=findViewById(R.id.edhSoluong);
+        btnThanhtoan=findViewById(R.id.btnThanhtoan);
 
         ChangeUI();
 
-        btnNewAndEdit.setOnClickListener(new View.OnClickListener() {
+        btnDathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titleAdd = getIntent().getStringExtra("titleAdd");
+                String titleAdd = getIntent().getStringExtra("titleDH");
                 if (titleAdd == null) {
                     UpdateShoe();
                 } else {
-                    CreateShoe();
-                }
-            }
-        });
 
-        btnChooseImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChooseImage();
+                }
             }
         });
     }
 
-    @SuppressLint("ObsoleteSdkInt")
-    private void ChooseImage() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, MY_RES_CODE);
+    private boolean CheckCreateShoe() {
+        // Viết mã kiểm tra dữ liệu nhập vào ở đây
+        return true;
     }
 
     @Override
@@ -101,54 +97,11 @@ public class NewCreateAndAddActivity extends AppCompatActivity {
         }
     }
 
-    // Thêm sản phẩm mới
-    private void CreateShoe() {
-        String name = edName.getText().toString();
-        String description = edBrand.getText().toString();
-        String price = edPrice.getText().toString();
-
-        if (CheckCreateShoe()) {
-            String imageUrl = selectedImageUri.toString(); // Lấy đường dẫn của ảnh đã chọn
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(APIService.DOMAIN)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            APIService apiService = retrofit.create(APIService.class);
-
-            Call<ShoeDTO> call = apiService.createShoe(new ShoeDTO(name, description, Long.parseLong(price), imageUrl));
-
-            call.enqueue(new Callback<ShoeDTO>() {
-                @Override
-                public void onResponse(Call<ShoeDTO> call, Response<ShoeDTO> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(NewCreateAndAddActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                        // Hiển thị ảnh đã chọn lên sau khi thêm
-                        ivImageShoe.setImageURI(selectedImageUri);
-                        startActivity(new Intent(NewCreateAndAddActivity.this, MainActivity.class));
-                        finish();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ShoeDTO> call, Throwable t) {
-                    Log.e("zzzzz", "onFailure: " + t.getMessage());
-                }
-            });
-        }
-    }
-
-
-    private boolean CheckCreateShoe() {
-        // Viết mã kiểm tra dữ liệu nhập vào ở đây
-        return true;
-    }
-
     private void UpdateShoe() {
-        String name = edName.getText().toString();
-        String description = edBrand.getText().toString();
-        String price = edPrice.getText().toString();
-        String id = getIntent().getStringExtra("id");
+        String name = edhName.getText().toString();
+        String description = edhBrand.getText().toString();
+        String price = edhPrice.getText().toString();
+        String id = getIntent().getStringExtra("id1");
 
         if (CheckCreateShoe()) {
             // Kiểm tra nếu người dùng đã chọn ảnh mới từ bộ nhớ máy ảo
@@ -167,10 +120,10 @@ public class NewCreateAndAddActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ShoeDTO> call, Response<ShoeDTO> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(NewCreateAndAddActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dat_hang.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
                             // Hiển thị ảnh đã chọn lên sau khi cập nhật
                             ivImageShoe.setImageURI(selectedImageUri);
-                            startActivity(new Intent(NewCreateAndAddActivity.this, MainActivity.class));
+                            startActivity(new Intent(Dat_hang.this, MainActivity.class));
                             finish();
                         }
                     }
@@ -195,8 +148,8 @@ public class NewCreateAndAddActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ShoeDTO> call, Response<ShoeDTO> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(NewCreateAndAddActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(NewCreateAndAddActivity.this, MainActivity.class));
+                            Toast.makeText(Dat_hang.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Dat_hang.this, MainActivity.class));
                             finish();
                         }
                     }
@@ -211,32 +164,34 @@ public class NewCreateAndAddActivity extends AppCompatActivity {
     }
 
 
-
     private void ChangeUI() {
         String titleAdd = getIntent().getStringExtra("titleAdd");
         String titleBtnAdd = getIntent().getStringExtra("titleBtnAdd");
         String titleUpdate = getIntent().getStringExtra("titleEdit");
         String titleBtnUp = getIntent().getStringExtra("titleBtnEdit");
-        String name = getIntent().getStringExtra("name");
-        String description = getIntent().getStringExtra("description");
-        Long price = getIntent().getLongExtra("price", 0);
+        String titleDH = getIntent().getStringExtra("titleDathang");
+        String titleBtnDH = getIntent().getStringExtra("titleBtnDathang");
+        String name = getIntent().getStringExtra("name1");
+        String description = getIntent().getStringExtra("description1");
+        Long price = getIntent().getLongExtra("price1", 0);
         if (titleUpdate == null) {
-            tvTitle.setText(titleAdd);
-            btnNewAndEdit.setText(titleBtnAdd);
+            tvDathang.setText(titleDH);
+            btnDathang.setText(titleBtnDH);
         } else {
-            tvTitle.setText(titleUpdate);
-            edName.setText(name);
-            edBrand.setText(description);
-            edPrice.setText(price + "");
-            btnNewAndEdit.setText(titleBtnUp);
+            tvDathang.setText(titleDH);
+            edhName.setText(name);
+            edhBrand.setText(description);
+            edhPrice.setText(price + "");
+            btnDathang.setText(titleBtnDH);
         }
 
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewCreateAndAddActivity.this, MainActivity.class));
+                startActivity(new Intent(Dat_hang.this, MainActivity.class));
                 finish();
             }
         });
     }
+
 }

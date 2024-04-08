@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:text="Miduno" />
+                    android:text="Rau củ" />
 
 
             </LinearLayout>
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:text="Adidas" />
+                    android:text="Ngon sạch" />
 
 
             </LinearLayout>
@@ -94,30 +94,6 @@
 
 
             </LinearLayout>
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fontFamily="serif"-->
-<!--                    android:text="Size: "-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tvSize"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fontFamily="serif"-->
-<!--                    android:text="L" />-->
-
-
-<!--            </LinearLayout>-->
-
         </LinearLayout>
 
         <LinearLayout
@@ -148,9 +124,24 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDathang"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/cus_buttom_delete"
+                android:fontFamily="serif"
+                android:textSize="12sp"
+                android:text="Đặt hàng"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
         </LinearLayout>
 
+
     </LinearLayout>
+
+
 
 
 </androidx.cardview.widget.CardView>

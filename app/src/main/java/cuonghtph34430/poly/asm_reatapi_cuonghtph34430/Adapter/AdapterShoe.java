@@ -20,11 +20,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide; // Import thư viện Glide
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
 import cuonghtph34430.poly.asm_reatapi_cuonghtph34430.API.APIService;
 import cuonghtph34430.poly.asm_reatapi_cuonghtph34430.DTO.ShoeDTO;
+import cuonghtph34430.poly.asm_reatapi_cuonghtph34430.Dat_hang;
 import cuonghtph34430.poly.asm_reatapi_cuonghtph34430.MainActivity;
 import cuonghtph34430.poly.asm_reatapi_cuonghtph34430.NewCreateAndAddActivity;
 import cuonghtph34430.poly.asm_reatapi_cuonghtph34430.R;
@@ -44,6 +49,10 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
         this.list = list;
     }
 
+
+
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,14 +60,18 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
         return new ViewHolder(view);
     }
 
-
-
-    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
-        String id = list.get(position).get_id(); // Thay đổi từ get_Id() thành get_id()
+    @SuppressLint("RecyclerView")
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String id = list.get(position).get_id();
         holder.tvNameShoe.setText(String.valueOf(list.get(position).getName()));
-        holder.tvBrandShoe.setText(String.valueOf(list.get(position).getDescription())); // Sửa từ getBrand() thành getDescription()
+        holder.tvBrandShoe.setText(String.valueOf(list.get(position).getDescription()));
         holder.tvPriceShoe.setText(String.valueOf(list.get(position).getPrice()));
+
+
+        // Load ảnh từ URL vào ImageView bằng Glide
+        Glide.with(context)
+                .load(list.get(position).getImg()) // Sử dụng đường dẫn URL từ API
+                .into(holder.ivShoe);
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +109,7 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
                                 .build();
                         APIService apiService = retrofit.create(APIService.class);
 
-                        Call<ShoeDTO> call = apiService.deleteShoe(id); // Thay đổi từ get_Id() thành get_id()
+                        Call<ShoeDTO> call = apiService.deleteShoe(id);
 
                         call.enqueue(new Callback<ShoeDTO>() {
                             @SuppressLint("NotifyDataSetChanged")
@@ -109,7 +122,6 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
                                     notifyDataSetChanged();
                                 }
                             }
-
                             @Override
                             public void onFailure(Call<ShoeDTO> call, Throwable t) {
                                 Log.e("cccccc", "onFailure: " + t.getMessage());
@@ -127,14 +139,29 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
                 intent.putExtra("titleEdit", "Update shoe");
                 intent.putExtra("titleBtnEdit", "Update");
                 intent.putExtra("name", list.get(position).getName());
-                intent.putExtra("description", list.get(position).getDescription()); // Sửa từ getBrand() thành getDescription()
+                intent.putExtra("description", list.get(position).getDescription());
                 intent.putExtra("price", list.get(position).getPrice());
-                intent.putExtra("id", list.get(position).get_id()); // Thay đổi từ get_Id() thành get_id()
+                intent.putExtra("img", list.get(position).getImg());
+                intent.putExtra("id", list.get(position).get_id());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.btnDathang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Dat_hang.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("titleDathang", "Đặt hàng");
+                intent.putExtra("titleBtnDathang", "Đặt hàng");
+                intent.putExtra("name1", list.get(position).getName());
+                intent.putExtra("description1", list.get(position).getDescription());
+                intent.putExtra("price1", list.get(position).getPrice());
+                intent.putExtra("id1", list.get(position).get_id());
                 context.startActivity(intent);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -144,7 +171,7 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvNameShoe, tvPriceShoe, tvBrandShoe;
-        Button btnEdit, btnDelete;
+        Button btnEdit, btnDelete,btnDathang;
         ShapeableImageView ivShoe;
 
         public ViewHolder(@NonNull View itemView) {
@@ -155,6 +182,7 @@ public class AdapterShoe extends RecyclerView.Adapter<AdapterShoe.ViewHolder> {
             ivShoe = itemView.findViewById(R.id.ivShoe);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnDathang=itemView.findViewById(R.id.btnDathang);
         }
     }
 }
